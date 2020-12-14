@@ -34,7 +34,17 @@ dependencies:
   firebase_core: ^0.5.3
   firebase_auth: 
   cloud_firestore: ^0.14.4
-  flutter_facebook_auth: "^1.0.0"
+  flutter_facebook_login: ^3.0.0
+  http: ^0.12.2
+  flutter_login_facebook: ^0.4.0+1
+  flutter_bloc: ^6.1.1
+  dio: ^3.0.10
+  #use for upload image
+  image_picker: ^0.6.7+15
+  firebase_storage: ^5.2.0
+  path: ^1.7.0
+  flutter_spinkit: "^4.1.2"
+
 
 
 dev_dependencies:

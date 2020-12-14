@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:animations/animations.dart';
+import 'package:social_media_app/screen/home/home.dart';
 import 'package:social_media_app/screen/signin/signin.dart';
 
 import 'style.dart';
@@ -13,7 +14,7 @@ class _NavigationBarState extends State<NavigationBar> {
   int _currentIndex = 0;
 
   final List<Widget> _screens = [
-    SignIn(),
+    Home(),
   ];
 
   void onTabTapped(int index) {
@@ -58,7 +59,7 @@ class _NavigationBarState extends State<NavigationBar> {
               color: _currentIndex == 1 ? Colors.deepPurple : Colors.grey,
             ),
             title: Text(
-              'Personal Blog',
+              'Social Media App',
               style: kTextButton.copyWith(
                 color: _currentIndex == 1 ? Colors.deepPurple : Colors.grey,
                 fontSize: 15,

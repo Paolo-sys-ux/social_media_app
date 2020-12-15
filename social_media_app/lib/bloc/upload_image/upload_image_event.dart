@@ -7,3 +7,7 @@ class UploadImage extends UploadImageEvent {
   File image;
   UploadImage({this.image});
 }
+
+class ViewImage extends UploadImageEvent {
+  ViewImage();
+}

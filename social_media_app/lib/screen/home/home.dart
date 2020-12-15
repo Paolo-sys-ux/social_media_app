@@ -19,17 +19,6 @@ class _HomeState extends State<Home> {
   File _image;
   final picker = ImagePicker();
 
-  // Future uploadImageToFirebase(BuildContext context) async {
-  //   String fileName = basename.basename(_image.path);
-  //   Reference firebaseStorageRef =
-  //       FirebaseStorage.instance.ref().child('uploads/$fileName');
-  //   UploadTask uploadTask = firebaseStorageRef.putFile(_image);
-  //   TaskSnapshot taskSnapshot = await uploadTask;
-  //   taskSnapshot.ref.getDownloadURL().then(
-  //         (value) => print("Done: $value"),
-  //       );
-  // }
-
   Future getImage() async {
     Navigator.pop(context);
     final pickedFile = await picker.getImage(
@@ -108,81 +97,117 @@ class _HomeState extends State<Home> {
               })
         ],
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            SizedBox(
-              height: 20,
-            ),
-            _image == null ? Text('No image selected.') : Image.file(_image),
-            SizedBox(
-              height: 20,
-            ),
-            InkWell(
-              onTap: () {
-                selectImage(context);
-              },
-              child: Container(
-                  decoration: BoxDecoration(
-                    color: Colors.lightBlueAccent,
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(20),
-                    ),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.only(
-                        top: 10, bottom: 10, left: 50, right: 50),
-                    child: Text(
-                      'Upload',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  )),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            InkWell(
-              onTap: () {
-                // uploadImageToFirebase(context);
-                BlocProvider.of<UploadImageBloc>(context)
-                    .add(UploadImage(image: _image));
-              },
-              child: Column(
-                children: [
-                  Container(
-                    decoration: BoxDecoration(
-                      color: Colors.green,
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(20),
-                      ),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.only(
-                          top: 10, bottom: 10, left: 50, right: 50),
-                      child: Text(
-                        'Post',
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    ),
-                  ),
-                  BlocBuilder<UploadImageBloc, UploadImageState>(
-                    builder: (context, state) {
-                      if (state is UploadImageLoading) {
-                        return SpinKitFadingCircle(
-                          color: Colors.grey,
-                          size: 50.0,
-                        );
-                      } else if (state is UploadImageError) {
-                        return Text('Error uploading');
-                      }
-                      return Text('');
-                    },
-                  ),
-                ],
+      body: SingleChildScrollView(
+        child: Center(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              SizedBox(
+                height: 20,
               ),
-            ),
-          ],
+              _image == null
+                  ? InkWell(
+                      onTap: () {
+                        selectImage(context);
+                      },
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.all(Radius.circular(200)),
+                        child: Image.asset(
+                          'assets/images/default.jpg',
+                          height: 200,
+                          width: 200,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    )
+                  : InkWell(
+                      onTap: () {
+                        selectImage(context);
+                      },
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.all(Radius.circular(200)),
+                        child: Image.file(
+                          _image,
+                          height: 200,
+                          width: 200,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
+              SizedBox(
+                height: 20,
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              InkWell(
+                onTap: () {
+                  // uploadImageToFirebase(context);
+                  BlocProvider.of<UploadImageBloc>(context)
+                      .add(UploadImage(image: _image));
+                },
+                child: Column(
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(
+                        color: Colors.green,
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(20),
+                        ),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.only(
+                            top: 10, bottom: 10, left: 50, right: 50),
+                        child: Text(
+                          'Post',
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
+                    ),
+                    BlocBuilder<UploadImageBloc, UploadImageState>(
+                      builder: (context, state) {
+                        if (state is UploadImageLoading) {
+                          return SpinKitFadingCircle(
+                            color: Colors.grey,
+                            size: 50.0,
+                          );
+                        } else if (state is UploadImageDone) {
+                          return Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Icon(
+                                Icons.check,
+                                color: Colors.green,
+                              ),
+                              Text('${state.doneMessage}'),
+                            ],
+                          );
+                        } else if (state is UploadImageError) {
+                          return Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Icon(
+                                Icons.close,
+                                color: Colors.red,
+                              ),
+                              Text('${state.errorMessage}'),
+                            ],
+                          );
+                        }
+                        return Text('');
+                      },
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

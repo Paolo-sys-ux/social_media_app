@@ -2,12 +2,14 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:responsive_framework/responsive_framework.dart';
+import 'package:social_media_app/bloc/display_post/display_post_bloc.dart';
 import 'package:social_media_app/bloc/facebook/facebook_bloc.dart';
 import 'package:social_media_app/bloc/google/google_bloc.dart';
 import 'package:social_media_app/bloc/upload_image/upload_image_bloc.dart';
 import 'package:social_media_app/constants/navigation_bar.dart';
 import 'package:social_media_app/screen/home/home.dart';
 import 'package:social_media_app/screen/signin/signin.dart';
+import 'package:social_media_app/view_data/view_data.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -29,6 +31,9 @@ class MyApp extends StatelessWidget {
         BlocProvider<UploadImageBloc>(
           create: (BuildContext context) => UploadImageBloc(),
         ),
+        BlocProvider<DisplayPostBloc>(
+          create: (BuildContext context) => DisplayPostBloc(),
+        ),
       ],
       child: MaterialApp(
         initialRoute: '/',
@@ -36,6 +41,7 @@ class MyApp extends StatelessWidget {
           '/signup': (context) => SignIn(),
           '/home': (context) => Home(),
           '/navigationbar': (context) => NavigationBar(),
+          '/viewdata': (context) => ViewData(),
         },
         builder: (context, widget) => ResponsiveWrapper.builder(
           BouncingScrollWrapper.builder(context, widget),

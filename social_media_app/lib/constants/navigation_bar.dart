@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:animations/animations.dart';
+import 'package:social_media_app/bloc/upload_image/upload_image_bloc.dart';
 import 'package:social_media_app/screen/home/home.dart';
 import 'package:social_media_app/screen/signin/signin.dart';
+import 'package:social_media_app/view_data/view_data.dart';
 
 import 'style.dart';
 
@@ -15,6 +17,7 @@ class _NavigationBarState extends State<NavigationBar> {
 
   final List<Widget> _screens = [
     Home(),
+    ViewData(),
   ];
 
   void onTabTapped(int index) {

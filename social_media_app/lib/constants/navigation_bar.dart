@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:animations/animations.dart';
 import 'package:social_media_app/bloc/upload_image/upload_image_bloc.dart';
 import 'package:social_media_app/screen/home/home.dart';
+import 'package:social_media_app/screen/messages/messages.dart';
 import 'package:social_media_app/screen/signin/signin.dart';
 import 'package:social_media_app/view_data/view_data.dart';
 
@@ -16,6 +17,7 @@ class _NavigationBarState extends State<NavigationBar> {
   int _currentIndex = 0;
 
   final List<Widget> _screens = [
+    Messages(),
     Home(),
     ViewData(),
   ];
@@ -43,12 +45,12 @@ class _NavigationBarState extends State<NavigationBar> {
         items: [
           BottomNavigationBarItem(
             icon: Icon(
-              _currentIndex == 0 ? Icons.add_circle : Icons.add_circle_outline,
+              _currentIndex == 0 ? Icons.message : Icons.message_outlined,
               size: 30,
               color: _currentIndex == 0 ? Colors.deepPurple : Colors.grey,
             ),
             title: Text(
-              'Blog feed',
+              'Chats',
               style: kTextButton.copyWith(
                 color: _currentIndex == 0 ? Colors.deepPurple : Colors.grey,
                 fontSize: 15,
@@ -57,14 +59,28 @@ class _NavigationBarState extends State<NavigationBar> {
           ),
           BottomNavigationBarItem(
             icon: Icon(
-              _currentIndex == 1 ? Icons.assignment : Icons.assignment,
+              _currentIndex == 1 ? Icons.add_circle : Icons.add_circle_outline,
               size: 30,
               color: _currentIndex == 1 ? Colors.deepPurple : Colors.grey,
             ),
             title: Text(
-              'Social Media App',
+              'Post',
               style: kTextButton.copyWith(
                 color: _currentIndex == 1 ? Colors.deepPurple : Colors.grey,
+                fontSize: 15,
+              ),
+            ),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              _currentIndex == 2 ? Icons.assignment : Icons.assignment,
+              size: 30,
+              color: _currentIndex == 2 ? Colors.deepPurple : Colors.grey,
+            ),
+            title: Text(
+              'Feed',
+              style: kTextButton.copyWith(
+                color: _currentIndex == 2 ? Colors.deepPurple : Colors.grey,
                 fontSize: 15,
               ),
             ),

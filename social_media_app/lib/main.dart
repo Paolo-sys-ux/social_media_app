@@ -10,6 +10,7 @@ import 'package:social_media_app/constants/navigation_bar.dart';
 import 'package:social_media_app/screen/home/home.dart';
 import 'package:social_media_app/screen/signin/signin.dart';
 import 'package:social_media_app/view_data/view_data.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

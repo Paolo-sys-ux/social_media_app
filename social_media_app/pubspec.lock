@@ -169,6 +169,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.2.1+1"
+  firebase_messaging:
+    dependency: "direct main"
+    description:
+      name: firebase_messaging
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "7.0.3"
   firebase_storage:
     dependency: "direct main"
     description:
@@ -229,7 +236,7 @@ packages:
       name: flutter_login_facebook
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.4.0+1"
+    version: "0.4.1"
   flutter_plugin_android_lifecycle:
     dependency: transitive
     description:
@@ -457,6 +464,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.5"
+  reactive_forms:
+    dependency: "direct main"
+    description:
+      name: reactive_forms
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "7.6.2"
   responsive_framework:
     dependency: "direct main"
     description:

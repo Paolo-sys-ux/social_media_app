@@ -21,7 +21,7 @@ class DeletePostBloc extends Bloc<DeletePostEvent, DeletePostState> {
         final postRef = FirebaseFirestore.instance.collection('post');
 
         await postRef.doc(event.uid).delete();
-
+        
         yield DeletePostDone();
       } catch (e) {
         print(e);

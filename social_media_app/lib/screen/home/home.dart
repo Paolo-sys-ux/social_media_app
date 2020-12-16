@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -16,6 +17,11 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  String messageTitle = "Empty";
+  String notificationAlert = "alert";
+
+  final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
+
   File _image;
   final picker = ImagePicker();
 
@@ -75,6 +81,28 @@ class _HomeState extends State<Home> {
         });
   }
 
+  //for fcm
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    _firebaseMessaging.configure(
+      onMessage: (message) async {
+        setState(() {
+          messageTitle = message["notification"]["title"];
+          notificationAlert = "New Notification Alert";
+        });
+      },
+      onResume: (message) async {
+        setState(() {
+          messageTitle = message["data"]["title"];
+          notificationAlert = "Application opened from Notification";
+        });
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -82,7 +110,7 @@ class _HomeState extends State<Home> {
         centerTitle: true,
         backgroundColor: Colors.deepPurpleAccent,
         title: Text(
-          'Home',
+          'Make a post',
           style: kTextButton.copyWith(color: Colors.white),
         ),
         actions: [
@@ -205,6 +233,41 @@ class _HomeState extends State<Home> {
                     ),
                   ],
                 ),
+              ),
+              InkWell(
+                onTap: () {},
+                child: Column(
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(
+                        color: Colors.green,
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(20),
+                        ),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.only(
+                            top: 10, bottom: 10, left: 50, right: 50),
+                        child: Text(
+                          'Get token',
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text(
+                    notificationAlert,
+                  ),
+                  Text(
+                    messageTitle,
+                    style: Theme.of(context).textTheme.headline4,
+                  ),
+                ],
               ),
             ],
           ),

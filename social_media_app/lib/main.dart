@@ -8,7 +8,9 @@ import 'package:social_media_app/bloc/google/google_bloc.dart';
 import 'package:social_media_app/bloc/upload_image/upload_image_bloc.dart';
 import 'package:social_media_app/constants/navigation_bar.dart';
 import 'package:social_media_app/screen/home/home.dart';
+import 'package:social_media_app/screen/home_screen/home_screen.dart';
 import 'package:social_media_app/screen/signin/signin.dart';
+import 'package:social_media_app/screen/user_screen/user_screen.dart';
 import 'package:social_media_app/view_data/view_data.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 
@@ -43,6 +45,8 @@ class MyApp extends StatelessWidget {
           '/home': (context) => Home(),
           '/navigationbar': (context) => NavigationBar(),
           '/viewdata': (context) => ViewData(),
+          '/homescreen': (context) => HomeScreen(),
+          '/userscreen': (context) => UserScreen(),
         },
         builder: (context, widget) => ResponsiveWrapper.builder(
           BouncingScrollWrapper.builder(context, widget),
@@ -58,7 +62,7 @@ class MyApp extends StatelessWidget {
           ],
         ),
         debugShowCheckedModeBanner: false,
-        title: 'Blog App',
+        title: 'Social Media App',
         theme: ThemeData(
           primarySwatch: Colors.blue,
           visualDensity: VisualDensity.adaptivePlatformDensity,

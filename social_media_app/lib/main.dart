@@ -9,6 +9,7 @@ import 'package:social_media_app/bloc/upload_image/upload_image_bloc.dart';
 import 'package:social_media_app/constants/navigation_bar.dart';
 import 'package:social_media_app/screen/home/home.dart';
 import 'package:social_media_app/screen/home_screen/home_screen.dart';
+import 'package:social_media_app/screen/search_screen/search_screen.dart';
 import 'package:social_media_app/screen/signin/signin.dart';
 import 'package:social_media_app/screen/user_screen/user_screen.dart';
 import 'package:social_media_app/view_data/view_data.dart';
@@ -47,6 +48,7 @@ class MyApp extends StatelessWidget {
           '/viewdata': (context) => ViewData(),
           '/homescreen': (context) => HomeScreen(),
           '/userscreen': (context) => UserScreen(),
+          '/searchscreen': (context) => SearchScreen(),
         },
         builder: (context, widget) => ResponsiveWrapper.builder(
           BouncingScrollWrapper.builder(context, widget),
@@ -67,7 +69,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
-        home: SignIn(),
+        home: NavigationBar(),
       ),
     );
   }

@@ -7,6 +7,7 @@ import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:path/path.dart' as basename;
 
 import 'package:bloc/bloc.dart';
@@ -38,7 +39,12 @@ class UploadImageBloc extends Bloc<UploadImageEvent, UploadImageState> {
         taskSnapshot.ref.getDownloadURL().then(
               (value) => print("Done: $value"),
             );
-        yield UploadImageDone(doneMessage: 'Upload Successful');
+
+        yield UploadImageDone();
+        final snackBar = SnackBar(
+          content: Text('Upload Successfully'),
+        );
+        event._scaffoldKey.currentState.showSnackBar(snackBar);
 
         //saving in cloud firestore
         if (event.image != null) {
@@ -103,7 +109,11 @@ class UploadImageBloc extends Bloc<UploadImageEvent, UploadImageState> {
         }
       } catch (e) {
         print(e);
-        yield UploadImageError(errorMessage: 'Error Uploading');
+        yield UploadImageError();
+        final snackBar = SnackBar(
+          content: Text('Failed to upload'),
+        );
+        event._scaffoldKey.currentState.showSnackBar(snackBar);
       }
     }
   }

@@ -105,27 +105,28 @@ class _HomeState extends State<Home> {
     );
   }
 
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       appBar: AppBar(
+        elevation: 0,
         centerTitle: true,
-        backgroundColor: Colors.deepPurpleAccent,
+        backgroundColor: Colors.transparent,
+        leading: IconButton(
+            icon: Icon(
+              Icons.arrow_back_ios_sharp,
+              color: Colors.black,
+            ),
+            onPressed: () {
+              Navigator.popAndPushNamed(context, '/navigationbar');
+            }),
         title: Text(
-          'Make a post',
-          style: kTextButton.copyWith(color: Colors.white),
+          'Post Photo',
+          style: kTextButton.copyWith(color: Color(0xFF514A43)),
         ),
-        actions: [
-          IconButton(
-              icon: Icon(
-                Icons.logout,
-                color: Colors.white,
-              ),
-              onPressed: () {
-                // BlocProvider.of<FacebookBloc>(context)
-                //     .add(FacebookLogout(context: context));
-              })
-        ],
       ),
       body: SingleChildScrollView(
         child: Center(
@@ -141,11 +142,11 @@ class _HomeState extends State<Home> {
                         selectImage(context);
                       },
                       child: ClipRRect(
-                        borderRadius: BorderRadius.all(Radius.circular(200)),
+                        borderRadius: BorderRadius.all(Radius.circular(20)),
                         child: Image.asset(
                           'assets/images/default.jpg',
-                          height: 200,
-                          width: 200,
+                          height: 300,
+                          width: 300,
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -155,11 +156,11 @@ class _HomeState extends State<Home> {
                         selectImage(context);
                       },
                       child: ClipRRect(
-                        borderRadius: BorderRadius.all(Radius.circular(200)),
+                        borderRadius: BorderRadius.all(Radius.circular(20)),
                         child: Image.file(
                           _image,
-                          height: 200,
-                          width: 200,
+                          height: 300,
+                          width: 300,
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -172,9 +173,9 @@ class _HomeState extends State<Home> {
               ),
               InkWell(
                 onTap: () {
-                  // uploadImageToFirebase(context);
+                  //uploadImageToFirebase(context);
                   BlocProvider.of<UploadImageBloc>(context)
-                      .add(UploadImage(image: _image));
+                      .add(UploadImage(image: _image, key: _scaffoldKey));
                 },
                 child: Column(
                   children: [
@@ -202,59 +203,9 @@ class _HomeState extends State<Home> {
                             size: 50.0,
                           );
                         } else if (state is UploadImageDone) {
-                          return Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              SizedBox(
-                                height: 10,
-                              ),
-                              Icon(
-                                Icons.check,
-                                color: Colors.green,
-                              ),
-                              Text('${state.doneMessage}'),
-                            ],
-                          );
-                        } else if (state is UploadImageError) {
-                          return Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              SizedBox(
-                                height: 10,
-                              ),
-                              Icon(
-                                Icons.close,
-                                color: Colors.red,
-                              ),
-                              Text('${state.errorMessage}'),
-                            ],
-                          );
-                        }
+                        } else if (state is UploadImageError) {}
                         return Text('');
                       },
-                    ),
-                  ],
-                ),
-              ),
-              InkWell(
-                onTap: () async {},
-                child: Column(
-                  children: [
-                    Container(
-                      decoration: BoxDecoration(
-                        color: Colors.green,
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(20),
-                        ),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.only(
-                            top: 10, bottom: 10, left: 50, right: 50),
-                        child: Text(
-                          'Get token',
-                          style: TextStyle(color: Colors.white),
-                        ),
-                      ),
                     ),
                   ],
                 ),

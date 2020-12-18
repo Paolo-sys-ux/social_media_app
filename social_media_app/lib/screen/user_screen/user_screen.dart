@@ -116,7 +116,7 @@ class _UserScreenState extends State<UserScreen> {
                     } else if (state is DisplayPostFetch) {
                       return Container(
                         child: SizedBox(
-                          height: 500,
+                          height: 700,
                           child: GridView.builder(
                             gridDelegate:
                                 SliverGridDelegateWithFixedCrossAxisCount(

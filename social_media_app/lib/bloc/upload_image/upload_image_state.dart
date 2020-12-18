@@ -7,14 +7,6 @@ class UploadImageInitial extends UploadImageState {}
 
 class UploadImageLoading extends UploadImageState {}
 
-class UploadImageDone extends UploadImageState {
-  final String doneMessage;
+class UploadImageDone extends UploadImageState {}
 
-  UploadImageDone({this.doneMessage});
-}
-
-class UploadImageError extends UploadImageState {
-  final String errorMessage;
-
-  UploadImageError({this.errorMessage});
-}
+class UploadImageError extends UploadImageState {}

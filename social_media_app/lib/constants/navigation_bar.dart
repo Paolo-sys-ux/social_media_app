@@ -4,6 +4,8 @@ import 'package:social_media_app/bloc/upload_image/upload_image_bloc.dart';
 import 'package:social_media_app/screen/home/home.dart';
 import 'package:social_media_app/screen/home_screen/home_screen.dart';
 import 'package:social_media_app/screen/messages/messages.dart';
+import 'package:social_media_app/screen/notifications_screen/notifications_screen.dart';
+import 'package:social_media_app/screen/search_screen/search_screen.dart';
 import 'package:social_media_app/screen/signin/signin.dart';
 import 'package:social_media_app/screen/user_screen/user_screen.dart';
 import 'package:social_media_app/view_data/view_data.dart';
@@ -20,8 +22,8 @@ class _NavigationBarState extends State<NavigationBar> {
 
   final List<Widget> _screens = [
     HomeScreen(),
-    Messages(),
-    Home(),
+    SearchScreen(),
+    NotificationsScreen(),
     UserScreen(),
   ];
 
@@ -60,63 +62,75 @@ class _NavigationBarState extends State<NavigationBar> {
             onTap: onTabTapped,
             items: [
               BottomNavigationBarItem(
-                icon: Icon(
-                  _currentIndex == 0 ? Icons.home : Icons.home_filled,
-                  size: 30,
-                  color: _currentIndex == 0 ? Colors.black : Colors.black87,
-                ),
-                title: Text(
-                  'Home',
-                  style: kTextButton.copyWith(
-                    color: _currentIndex == 0 ? Colors.black : Colors.black87,
-                    fontSize: 15,
+                  icon: Icon(
+                    _currentIndex == 0 ? Icons.home : Icons.home_filled,
+                    size: 30,
+                    color: _currentIndex == 0
+                        ? Color(0xFF514A43)
+                        : Color(0xFF514A43),
                   ),
-                ),
-              ),
+                  title: Text('')
+                  // Text(
+                  //   'Home',
+                  //   style: kTextButton.copyWith(
+                  //     color: _currentIndex == 0 ? Colors.black : Colors.black87,
+                  //     fontSize: 15,
+                  //   ),
+                  // ),
+                  ),
               BottomNavigationBarItem(
-                icon: Icon(
-                  _currentIndex == 1 ? Icons.search : Icons.search_outlined,
-                  size: 30,
-                  color: _currentIndex == 1 ? Colors.black : Colors.black87,
-                ),
-                title: Text(
-                  'Search',
-                  style: kTextButton.copyWith(
-                    color: _currentIndex == 1 ? Colors.black : Colors.black87,
-                    fontSize: 15,
+                  icon: Icon(
+                    _currentIndex == 1 ? Icons.search : Icons.search_outlined,
+                    size: 30,
+                    color: _currentIndex == 1
+                        ? Color(0xFF514A43)
+                        : Color(0xFF514A43),
                   ),
-                ),
-              ),
+                  title: Text('')
+                  // Text(
+                  //   'Search',
+                  //   style: kTextButton.copyWith(
+                  //     color: _currentIndex == 1 ? Colors.black : Colors.black87,
+                  //     fontSize: 15,
+                  //   ),
+                  // ),
+                  ),
               BottomNavigationBarItem(
-                icon: Icon(
-                  _currentIndex == 2
-                      ? Icons.notifications
-                      : Icons.notifications,
-                  size: 30,
-                  color: _currentIndex == 2 ? Colors.black : Colors.black87,
-                ),
-                title: Text(
-                  'Notifications',
-                  style: kTextButton.copyWith(
-                    color: _currentIndex == 2 ? Colors.black : Colors.black87,
-                    fontSize: 15,
+                  icon: Icon(
+                    _currentIndex == 2
+                        ? Icons.notifications
+                        : Icons.notifications,
+                    size: 30,
+                    color: _currentIndex == 2
+                        ? Color(0xFF514A43)
+                        : Color(0xFF514A43),
                   ),
-                ),
-              ),
+                  title: Text('')
+                  // Text(
+                  //   'Notifications',
+                  //   style: kTextButton.copyWith(
+                  //     color: _currentIndex == 2 ? Colors.black : Colors.black87,
+                  //     fontSize: 15,
+                  //   ),
+                  // ),
+                  ),
               BottomNavigationBarItem(
-                icon: Icon(
-                  _currentIndex == 3 ? Icons.person : Icons.person,
-                  size: 30,
-                  color: _currentIndex == 3 ? Colors.black : Colors.black87,
-                ),
-                title: Text(
-                  'User',
-                  style: kTextButton.copyWith(
-                    color: _currentIndex == 3 ? Colors.black : Colors.black87,
-                    fontSize: 15,
+                  icon: Icon(
+                    _currentIndex == 3 ? Icons.person : Icons.person,
+                    size: 30,
+                    color: _currentIndex == 3
+                        ? Color(0xFF514A43)
+                        : Color(0xFF514A43),
                   ),
-                ),
-              ),
+                  title: Text('')
+                  // Text(
+                  //   'User',
+                  //   style: kTextButton.copyWith(
+                  //     color: _currentIndex == 3 ? Colors.black : Colors.black87,
+                  //     fontSize: 15,
+                  //   ),
+                  // ),
+                  ),
             ],
           ),
         ),

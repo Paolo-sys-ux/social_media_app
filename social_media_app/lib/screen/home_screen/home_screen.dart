@@ -22,10 +22,15 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Padding(
           padding: const EdgeInsets.all(10.0),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Text(
-                "Stories",
-                style: kTextButton.copyWith(fontSize: 22),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  "Stories",
+                  style: kTextButton.copyWith(fontSize: 22, color: Colors.grey),
+                ),
               ),
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
@@ -37,45 +42,103 @@ class _HomeScreenState extends State<HomeScreen> {
                         borderRadius: BorderRadius.all(Radius.circular(100)),
                         child: Image.asset(
                           'assets/images/default.jpg',
-                          height: 100,
-                          width: 100,
+                          height: 80,
+                          width: 80,
                           fit: BoxFit.cover,
                         ),
                       ),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 10, right: 10),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.all(Radius.circular(100)),
-                        child: Image.asset(
-                          'assets/images/default.jpg',
-                          height: 100,
-                          width: 100,
-                          fit: BoxFit.cover,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: Colors.red,
+                            width: 4,
+                          ),
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(100),
+                          ),
+                        ),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.all(Radius.circular(100)),
+                          child: Image.network(
+                            'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+                            height: 80,
+                            width: 80,
+                            fit: BoxFit.cover,
+                          ),
                         ),
                       ),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 10, right: 10),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.all(Radius.circular(100)),
-                        child: Image.asset(
-                          'assets/images/default.jpg',
-                          height: 100,
-                          width: 100,
-                          fit: BoxFit.cover,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: Colors.red,
+                            width: 4,
+                          ),
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(100),
+                          ),
+                        ),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.all(Radius.circular(100)),
+                          child: Image.network(
+                            'https://cdn.fastly.picmonkey.com/contentful/h6goo9gw1hh6/2sNZtFAWOdP1lmQ33VwRN3/24e953b920a9cd0ff2e1d587742a2472/1-intro-photo-final.jpg?w=800&q=70',
+                            height: 80,
+                            width: 80,
+                            fit: BoxFit.cover,
+                          ),
                         ),
                       ),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 10, right: 10),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.all(Radius.circular(100)),
-                        child: Image.asset(
-                          'assets/images/default.jpg',
-                          height: 100,
-                          width: 100,
-                          fit: BoxFit.cover,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: Colors.red,
+                            width: 4,
+                          ),
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(100),
+                          ),
+                        ),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.all(Radius.circular(100)),
+                          child: Image.network(
+                            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTD8u1Nmrk78DSX0v2i_wTgS6tW5yvHSD7o6g&usqp=CAU',
+                            height: 80,
+                            width: 80,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10, right: 10),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: Colors.red,
+                            width: 4,
+                          ),
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(100),
+                          ),
+                        ),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(100),
+                          ),
+                          child: Image.network(
+                            'https://monteluke.com.au/wp-content/gallery/linkedin-profile-pictures/cache/3.JPG-nggid03125-ngg0dyn-591x591-00f0w010c010r110f110r010t010.JPG',
+                            height: 80,
+                            width: 80,
+                            fit: BoxFit.cover,
+                          ),
                         ),
                       ),
                     ),
@@ -102,8 +165,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     );
                   } else if (state is DisplayPostFetch) {
                     return Container(
-                      child: SizedBox(
-                        height: 500,
+                      child: Expanded(
                         child: ListView.builder(
                           itemCount: state.post == null ? 0 : state.post.length,
                           itemBuilder: (BuildContext context, int index) {
@@ -122,20 +184,30 @@ class _HomeScreenState extends State<HomeScreen> {
                                   print(name);
                                 },
                                 child: Padding(
-                                  padding: const EdgeInsets.all(10.0),
+                                  padding: const EdgeInsets.only(
+                                      left: 0, right: 0, top: 10, bottom: 10),
                                   child: Container(
                                     decoration: BoxDecoration(
-                                      color: Color(0xFFeceff1),
+                                      color: Colors.white,
                                       borderRadius: BorderRadius.all(
-                                        Radius.circular(20),
+                                        Radius.circular(30),
                                       ),
                                     ),
-                                    height: 400,
+                                    height: 450,
                                     child: Column(
                                       children: [
                                         Padding(
                                           padding: const EdgeInsets.all(10.0),
                                           child: ListTile(
+                                            title: Text(
+                                              'Tom Smith',
+                                              style: kTextButton,
+                                            ),
+                                            subtitle: Text(
+                                              'Iceland',
+                                              style: kTextButton.copyWith(
+                                                  color: Colors.grey),
+                                            ),
                                             leading: CircleAvatar(
                                               backgroundColor:
                                                   Colors.transparent,
@@ -163,19 +235,46 @@ class _HomeScreenState extends State<HomeScreen> {
                                             ),
                                           ),
                                         ),
-                                        ClipRRect(
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(30)),
-                                          child: FadeInImage(
-                                            width: 300,
-                                            height: 300,
-                                            fit: BoxFit.cover,
-                                            placeholder: AssetImage(
-                                                'assets/images/default.jpg'),
-                                            image: NetworkImageWithRetry(
-                                                "${state.post[index]["url"]}"),
+                                        Container(
+                                          decoration: BoxDecoration(
+                                              borderRadius: BorderRadius.all(
+                                                  Radius.circular(20)),
+                                              boxShadow: [
+                                                BoxShadow(
+                                                  color: Colors.grey
+                                                      .withOpacity(0.3),
+                                                  spreadRadius: 5,
+                                                  blurRadius: 10,
+                                                  offset: Offset(0,
+                                                      3), // changes position of shadow
+                                                )
+                                              ]),
+                                          child: ClipRRect(
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(30)),
+                                            child: FadeInImage(
+                                              width: 300,
+                                              height: 300,
+                                              fit: BoxFit.cover,
+                                              placeholder: AssetImage(
+                                                  'assets/images/default.jpg'),
+                                              image: NetworkImageWithRetry(
+                                                  "${state.post[index]["url"]}"),
+                                            ),
                                           ),
                                         ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                              top: 20, left: 50),
+                                          child: Align(
+                                              alignment: Alignment.bottomLeft,
+                                              child: Text(
+                                                '965 likes',
+                                                style: kTextButton.copyWith(
+                                                    color: Colors.grey,
+                                                    fontSize: 20),
+                                              )),
+                                        )
                                       ],
                                     ),
                                   ),
